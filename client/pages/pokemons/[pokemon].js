@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
         pokemonName,
         abilities: data.abilities,
         imgUrl: data.imgURL,
-        number: data.id,
+        number: data.number,
         types: data.types,
       },
     };
@@ -46,6 +46,7 @@ export default function Pokemom({
   imgUrl,
   number,
   types,
+
 }) {
   return (
     <div>
