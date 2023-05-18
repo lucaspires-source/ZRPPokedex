@@ -5,10 +5,11 @@ const formatNumbers = function (id) {
     } else if (id < 100) {
         number = `0${id}`
     } else {
-        number = id
+        number = `${id}`
     }
     return number
   }
 
 
 module.exports = formatNumbers
+

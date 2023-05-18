@@ -1,6 +1,6 @@
 const axios = require('axios')
-const sortAbilitiesByAlphabeticalOrder = require('../helpers/sortAbilitiesByAlphabeticalOrder')
-const formatNumbers = require('../helpers/formatNumbers')
+const sortAbilitiesByAlphabeticalOrder = require('../helpers/sortAbilitiesByAlphabeticalOrder/sortAbilitiesByAlphabeticalOrder')
+const formatNumbers = require('../helpers/formatNumbers/formatNumbers')
 
 
  const fetchPokemon = async (req, res) => {
@@ -18,7 +18,6 @@ const formatNumbers = require('../helpers/formatNumbers')
     const imgURL = pokemon.data.sprites.front_default
     abilities = sortAbilitiesByAlphabeticalOrder(abilities)
     const number = formatNumbers(id)
-    console.log(number)
     console.log(`get at /api/pokemons/${pokemonName}`)
     return res.json({ abilities, imgURL, pokemonName, types, number})
   }
