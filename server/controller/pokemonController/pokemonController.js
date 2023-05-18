@@ -1,6 +1,6 @@
 const axios = require('axios')
-const sortAbilitiesByAlphabeticalOrder = require('../helpers/sortAbilitiesByAlphabeticalOrder/sortAbilitiesByAlphabeticalOrder')
-const formatNumbers = require('../helpers/formatNumbers/formatNumbers')
+const sortAbilitiesByAlphabeticalOrder = require('../../helpers/sortAbilitiesByAlphabeticalOrder/sortAbilitiesByAlphabeticalOrder')
+const formatNumbers = require('../../helpers/formatNumbers/formatNumbers')
 
 
  const fetchPokemon = async (req, res) => {
