@@ -20,7 +20,7 @@ npm start
 Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
 
 
-## To Run the client side
+## To Run the client side:
 First run on **/client**
 ```bash
 npm install
