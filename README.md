@@ -33,4 +33,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser
 
 
+## Docker Image
+If you want, you can run the server in a Docker container using the following [Docker Image](https://hub.docker.com/repository/docker/lucasrpires94/pokeapi/general)
+
 ## Roadmap
