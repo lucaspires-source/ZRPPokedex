@@ -66,7 +66,7 @@ A few ideias on how to improve this current implementation
 
 
 ### Docker
-- Build a Docker Image for the Client Side and intergrate with server image using Docker Compose.
+-  Integrate both docker containers using Docker Compose.
 
 ### CI/CD
 - Install and config [Eslint](https://eslint.org/) into this project
