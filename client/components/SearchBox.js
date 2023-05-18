@@ -1,13 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import Router from "next/router";
-import pokemons from "../lib/pokemon.list.json";
-
 export default function SearchBox() {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState([]);
+  const [allPokemonNames, setAllPokemonNames] = React.useState([]);
 
+  console.log(allPokemonNames);
   React.useEffect(() => {
+    fetchPokemons()
     const clearQuery = () => {
       setQuery("");
     };
@@ -17,23 +18,40 @@ export default function SearchBox() {
       Router.events.off("routeChangeComplete", clearQuery);
     };
   }, []);
+
+  async function fetchPokemons() {
+    try {
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=1015');
+      if (!response.ok) {
+        throw new Error('Failed to fetch pokemons');
+      }
+      const data = await response.json();
+      const pokemonNames = data.results.map(pokemon => pokemon.name);
+      setAllPokemonNames(pokemonNames)
+      return pokemonNames;
+    } catch (error) {
+      console.error('Error fetching pokemons:', error);
+      return [];
+    }
+  }
+  
   const onChange = (e) => {
     const { value } = e.target;
     setQuery(value);
 
     const matchingPokemons = [];
     if (value.length > 3) {
-      for (const pokemon of pokemons) {
+      for (const pokemonName of allPokemonNames) {
         if (matchingPokemons.length >= 5) {
           break;
         }
-        const match = pokemon.name
+        const match = pokemonName
           .toLowerCase()
           .startsWith(value.toLowerCase());
         if (match) {
           const pokemonData = {
-            ...pokemon,
-            slug: `/${pokemon.name}`,
+            name:pokemonName,
+            slug: `/${pokemonName}`,
           };
           matchingPokemons.push(pokemonData);
         }
