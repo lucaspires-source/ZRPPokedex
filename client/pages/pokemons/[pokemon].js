@@ -67,8 +67,8 @@ export default function Pokemom({
               </p>
             </div>
             <div className="pokemon-info">
-              <div>
-              <img src={imgUrl} alt={pokemonName} />
+              <div className="pokemon-image">
+                <img src={imgUrl} alt={pokemonName} />
               </div>
               <div className="pokemon-stats">
               <p>Abilities:</p>
