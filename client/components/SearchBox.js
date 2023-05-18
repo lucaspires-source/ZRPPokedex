@@ -73,7 +73,7 @@ export default function SearchBox() {
               results.map((pokemon) => (
                 <li key={pokemon.slug}>
                   <Link href={`/pokemons/${pokemon.name}`} passHref>
-                    <a href="dummy">{pokemon.name}</a>
+                    <a>{pokemon.name}</a>
                   </Link>
                 </li>
               ))

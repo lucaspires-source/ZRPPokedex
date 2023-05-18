@@ -67,11 +67,11 @@ export default function Pokemom({
               <p>Abilities:</p>
               {
               abilities.map((ab) => {
-                return <span>{ab.ability.name}</span>;
+                return <span key={ab.ability.url}>{ab.ability.name}</span>;
               })}
               <p>Type:</p>
               {types.map((ty) => {
-                return <span>{ty.type.name}</span>;
+                return <span key={ty.type.url}>{ty.type.name}</span>;
               })}
               </div>
             </div>
