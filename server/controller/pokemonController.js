@@ -13,11 +13,11 @@ const sortAbilitiesByAlphabeticalOrder = require('../helpers/sortAbilitiesByAlph
     if (!pokemon.data) {
       return res.send(pokemon.response.statusText)
     }
-    let { id, abilities } = pokemon.data
+    let { id, abilities , types} = pokemon.data
     const imgURL = pokemon.data.sprites.front_default
     abilities = sortAbilitiesByAlphabeticalOrder(abilities)
     console.log(`get at /api/pokemons/${pokemonName}`)
-    return res.json({ abilities, imgURL, pokemonName, id })
+    return res.json({ abilities, imgURL, pokemonName, id , types})
   }
 
 module.exports = fetchPokemon

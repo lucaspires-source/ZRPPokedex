@@ -1,20 +1,20 @@
-import React from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
-import pokemons from '../lib/pokemon.list.json'
+import React from "react";
+import Link from "next/link";
+import Router from "next/router";
+import pokemons from "../lib/pokemon.list.json";
 
 export default function SearchBox() {
-  const [query, setQuery] = React.useState('');
+  const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState([]);
 
   React.useEffect(() => {
     const clearQuery = () => {
-      setQuery('');
+      setQuery("");
     };
-    Router.events.on('routeChangeComplete', clearQuery);
+    Router.events.on("routeChangeComplete", clearQuery);
 
     return () => {
-      Router.events.off('routeChangeComplete', clearQuery);
+      Router.events.off("routeChangeComplete", clearQuery);
     };
   }, []);
   const onChange = (e) => {
@@ -27,7 +27,9 @@ export default function SearchBox() {
         if (matchingPokemons.length >= 5) {
           break;
         }
-        const match = pokemon.name.toLowerCase().startsWith(value.toLowerCase());
+        const match = pokemon.name
+          .toLowerCase()
+          .startsWith(value.toLowerCase());
         if (match) {
           const pokemonData = {
             ...pokemon,
@@ -40,26 +42,38 @@ export default function SearchBox() {
 
     return setResults(matchingPokemons);
   };
+
   return (
-    <div className="search">
-      <input type="text" placeholder="Search for a pokemon" value={query} onChange={onChange} />
-      {query.length > 3 && (
-      <ul>
-        {results.length > 0 ? (
-          results.map((pokemon) => (
-            <li key={pokemon.slug}>
-              <Link href={`/pokemons/${pokemon.name}`} passHref>
-                <a href="dummy">
-                  {pokemon.name}
-                </a>
-              </Link>
-            </li>
-          ))
-        ) : (
-          <li className="search__no-results"> Sorry, we could not find any pokemon with this name :(</li>
-        ) }
-      </ul>
-      )}
-    </div>
+    <>
+      <div className="logo-container">
+        <img src="https://logodownload.org/wp-content/uploads/2017/08/pokemon-logo-8-2048x752.png" alt="logo"/>
+      </div>
+      <div className="search">
+        <input
+          type="text"
+          placeholder="Search the name of a pokemon"
+          value={query}
+          onChange={onChange}
+        />
+        {query.length > 3 && (
+          <ul>
+            {results.length > 0 ? (
+              results.map((pokemon) => (
+                <li key={pokemon.slug}>
+                  <Link href={`/pokemons/${pokemon.name}`} passHref>
+                    <a href="dummy">{pokemon.name}</a>
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <li className="search__no-results">
+                {" "}
+                Sorry, we could not find any pokemon with this name :(
+              </li>
+            )}
+          </ul>
+        )}
+      </div>
+    </>
   );
 }
