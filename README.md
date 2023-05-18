@@ -23,6 +23,7 @@ Open [http://localhost:8000](http://localhost:8000) with your browser to see the
 
 ## To Run the client side:
 First run on **/client**
+
 ```bash
 npm install
 ```
@@ -35,7 +36,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser
 
 
 ## Docker Image
-If you want, you can run the server in a Docker container using the following [Docker Image](https://hub.docker.com/repository/docker/lucasrpires94/pokeapi/general)
+If you want, you can run the server in a Docker container using the following Docker Images [server](https://hub.docker.com/r/lucasrpires94/pokeapi)
+[client](https://hub.docker.com/r/lucasrpires94/pokedex-client)
+
+or using the following commands
+
+```bash
+ docker pull lucasrpires94/pokeapi:1.2
+```
+
+```bash
+docker pull lucasrpires94/pokedex-client:1.2
+```
 
 ## Roadmap
 A few ideias on how to improve this current implementation
@@ -54,7 +66,7 @@ A few ideias on how to improve this current implementation
 
 
 ### Docker
-- Build a Docker Image for the Client Side and intergrate with server image using Docker Compose.
+-  Integrate both docker containers using Docker Compose.
 
 ### CI/CD
 - Install and config [Eslint](https://eslint.org/) into this project
