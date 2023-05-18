@@ -6,4 +6,11 @@
 **Back-end:** Node, Express, Axios
 
 ## To Run the server:
-# ZRPPokedex
+
+
+
+## To Run the client side
+
+
+
+## Roadmap
