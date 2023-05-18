@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
         pokemonName,
         abilities: data.abilities,
         imgUrl: data.imgURL,
-        number: data.id,
+        number: data.number,
         types: data.types,
       },
     };
@@ -46,6 +46,7 @@ export default function Pokemom({
   imgUrl,
   number,
   types,
+
 }) {
   return (
     <div>
@@ -66,8 +67,8 @@ export default function Pokemom({
               </p>
             </div>
             <div className="pokemon-info">
-              <div>
-              <img src={imgUrl} alt={pokemonName} />
+              <div className="pokemon-image">
+                <img src={imgUrl} alt={pokemonName} />
               </div>
               <div className="pokemon-stats">
               <p>Abilities:</p>

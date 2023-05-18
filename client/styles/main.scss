@@ -26,8 +26,7 @@ body {
 .container {
   max-width: 500px;
   margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 0 0.9rem;
   width: 100%;
 }
 
@@ -41,14 +40,20 @@ h6 {
 }
 
 .page-wrapper {
-  margin: 50px 0;
+  margin: 3.2rem 0;
 .back-button {
   border: #F78D8D 2px solid;
-  margin: 5px 0;
+  margin: 0.4rem 0;
   width: 100%;
-  max-width: 400px;
-  padding: 5px;
-  border-radius: 10px;
+  max-width: 25rem;
+  padding: 0.3rem;
+  border-radius: 0.6rem;
+  transition: 0.5s;
+  &:hover {
+    opacity: 0.7;
+    scale: 1.1;
+  }
+
   .back-link {
     display: flex;
     align-items: center;
@@ -57,9 +62,7 @@ h6 {
     font-weight: $f-semi-bold;
     transition: all 0.3s ease;
 
-    &:hover {
-      opacity: 0.7;
-    }
+
 }
   }
 }
@@ -77,8 +80,8 @@ h6 {
   position: relative;
   input {
     width: 100%;
-    padding: 15px 15px;
-    border-radius: 10px;
+    padding: 1rem;
+    border-radius: 0.7rem;
     border: 2px solid $primary;
     font-size: 1.25rem;
     color: $dark;
@@ -95,11 +98,11 @@ h6 {
     position: absolute;
     top: calc(100% + 10px);
     width: 100%;
-    padding: 5px 15px;
+    padding: 0.4rem 1rem;
     margin: 0;
     list-style: none;
     border: 2px solid $primary;
-    border-radius: 10px;
+    border-radius: 0.7rem;
     z-index: 100;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -117,7 +120,7 @@ h6 {
         font-weight: $f-semi-bold;
         transition: all 0.3s ease;
         width: 100%;
-        padding: 10px 0;
+        padding: 0.7rem 0;
 
         &:hover {
           color: $primary;
@@ -127,12 +130,12 @@ h6 {
   }
 
   &__no-results {
-    padding: 15px 0;
+    padding: 1rem 0;
   }
 }
 
 .logo-container {
-  margin: 20px 0;
+  margin: 1.3rem 0;
   img {
     width: 100%;
     height: 100%;
@@ -148,48 +151,66 @@ h6 {
   min-height: 100vh;
   .pokemon-card {
     max-width: 400px;
-    height:200px;
+    max-height: 400px;
+    height:100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    border: $primary solid 5px;
-    border-radius: 5px;
+    border: $primary solid 0.4rem;
+    border-radius: 0.4rem;
     background-color: $primary;
-    padding: 15px;
+    padding: 1rem;
+    transition: 0.2s;
 
+    &:hover {
+      opacity: 0.7;
+      scale: 1.1;
+      margin-top: 2rem;
+    }
     p {
       color: $light;
       text-transform: capitalize;
-      margin: 5px;
+      margin: 0.4rem;
     }
     .pokemon-name {
+      background-color: $secondary;
+      padding: 0.3rem;
+      border-radius: 0.2rem;
       font-weight: $f-bold;
-      font-size: 22px;
+      font-size: 1.4rem;
     }
 
     .pokemon-info {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      
-      img {
-        height: 120px;
-        width: 120px;
-      }
+
     }
 
+    .pokemon-image {
+      background-color: $secondary;
+      border-radius: 2rem;
+      margin: 0 1rem;
+      img {
+        height: 7rem;
+        width: 7rem;
+      }
+    }
     .pokemon-stats {
+      display: flex;
+      flex-direction: column;
       span{
         text-transform: uppercase ;
         background-color:$secondary; 
-        border-radius: 5px;
-        margin: 0 2px;
-        padding: 5px;
+        border-radius: 0.4rem;
+        margin: 0.2rem;
+        padding: 0.3rem;
         color: $light;
-        font-size: 12px;
+        font-size: 0.8rem;
       }
     }
+ 
   }
 }
 

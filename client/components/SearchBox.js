@@ -51,7 +51,7 @@ export default function SearchBox() {
       <div className="search">
         <input
           type="text"
-          placeholder="Search the name of a pokemon"
+          placeholder="Search for a pokemon"
           value={query}
           onChange={onChange}
         />
