@@ -1,0 +1,220 @@
+$f-light: 300;
+$f-regular: 400;
+$f-semi-bold: 600;
+$f-bold: 700;
+$f-extra-bold: 800;
+
+// colours
+$dark: #242424;
+$light:#eddddd;
+$primary: #f65555;
+
+// global
+body {
+  font-family: "Nunito", sans-serif;
+  color: $dark;
+  margin: 0;
+  background-color: $light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+.page-wrapper {
+  margin: 50px 0;
+
+  .back-link {
+    display: inline-block;
+    text-decoration: none;
+    color: $primary;
+    font-weight: $f-semi-bold;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.home {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 15px 15px;
+    border-radius: 10px;
+    border: 2px solid $primary;
+    font-size: 1.25rem;
+    color: $dark;
+    font-family: "Nunito", sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  ul {
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 100%;
+    padding: 5px 15px;
+    margin: 0;
+    list-style: none;
+    border: 2px solid $primary;
+    border-radius: 10px;
+    z-index: 100;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-transform: capitalize;
+
+    li {
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: $dark;
+        font-weight: $f-semi-bold;
+        transition: all 0.3s ease;
+        width: 100%;
+        padding: 10px 0;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  &__no-results {
+    padding: 15px 0;
+  }
+}
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  border: $primary solid 5px;
+  border-radius: 5px;
+  background-color: $primary;
+ p {
+  color: $light;
+  text-transform: capitalize;
+ }
+}
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: $primary;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  // box-shadow: 0 0 10px $primary, 0 0 5px $primary;
+  opacity: 1;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: $primary;
+  border-left-color: $primary;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
