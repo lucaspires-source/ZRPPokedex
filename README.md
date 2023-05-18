@@ -1,7 +1,7 @@
 # Fullstack Pokedex
 ## Stack
 
-**Front-end:** Next,js, Sass
+**Front-end:** Next.js, Sass
 
 **Back-end:** Node, Express, Axios
 

@@ -1,74 +1,83 @@
-
-const axios = require('axios');
+const PokemonService = require('../../services/PokemonService/PokemonService');
 const fetchPokemon = require('./pokemonController');
 
-jest.mock('axios');
+jest.mock('../../services/PokemonService/PokemonService');
 
 describe('fetchPokemon', () => {
-  it('should fetch and format Pokemon data', async () => {
-    const pokemonData = {
-      data: {
-        id: 258,
-        abilities: [
-          { ability: {name: 'torrent', url: 'https://pokeapi.co/api/v2/ability/67/' }},
-          { ability: { name: 'damp', url: 'https://pokeapi.co/api/v2/ability/6/' }}
-        ],
-        types: [
-          { name: 'water', url: 'https://pokeapi.co/api/v2/type/11/' }
-        ],
-        sprites: {
-          front_default: 'https://example.com/mudkip.png'
-        }
-      }
-    };
-    axios.get.mockResolvedValueOnce(pokemonData);
-
-    const req = { params: { pokemonName: 'mudkip' } };
-    const res = {
-      send: jest.fn(),
-      json: jest.fn()
-    };
-
- 
-    await fetchPokemon(req, res);
-
-
-    expect(axios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/mudkip');
-    expect(res.json).toHaveBeenCalledWith({
-      abilities: [ 
-        { ability: { name: 'damp', url: 'https://pokeapi.co/api/v2/ability/6/' }},
-        { ability: {name: 'torrent', url: 'https://pokeapi.co/api/v2/ability/67/' }}
-    ],
-      imgURL: 'https://example.com/mudkip.png',
-      pokemonName: 'mudkip',
-      types:  [{"name": "water","url": "https://pokeapi.co/api/v2/type/11/"}],
-      number: '258'
-    });
-    expect(res.send).not.toHaveBeenCalled();
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-
-  it('should handle API errors', async () => {
-
-    const errorMessage = 'Pokemon not found';
-    const errorResponse = {
-      response: {
-        statusText: errorMessage
-      }
+  it('should fetch and return Pikachu data successfully', async () => {
+    const pokemonName = 'pikachu';
+    const req = {
+      params: {
+        pokemonName,
+      },
     };
-    axios.get.mockRejectedValueOnce(errorResponse);
-
-    const req = { params: { pokemonName: 'charizard' } };
     const res = {
-      send: jest.fn(),
-      json: jest.fn()
+      json: jest.fn(),
+    };
+    const pokemonData = {
+        abilities: [
+            {
+                ability: {
+                  name: 'lightning-rod',
+                  url: 'https://pokeapi.co/api/v2/ability/31/',
+                },
+                is_hidden: true,
+                slot: 3,
+              },
+            {
+              ability: {
+                name: 'static',
+                url: 'https://pokeapi.co/api/v2/ability/9/',
+              },
+              is_hidden: false,
+              slot: 1,
+            },
+          ],
+      imgURL: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
+      pokemonName,
+      types: [
+        {
+          slot: 1,
+          type: {
+            name: 'electric',
+            url: 'https://pokeapi.co/api/v2/type/13/',
+          },
+        },
+      ],
+      number: '025',
     };
 
+    PokemonService.fetchPokemonData.mockResolvedValueOnce(pokemonData);
 
     await fetchPokemon(req, res);
 
-    expect(axios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/charizard');
-    expect(res.send).toHaveBeenCalledWith(errorMessage);
-    expect(res.json).not.toHaveBeenCalled();
+    expect(PokemonService.fetchPokemonData).toHaveBeenCalledWith(pokemonName);
+    expect(res.json).toHaveBeenCalledWith(pokemonData);
+  });
+
+  it('should handle errors and return an error response', async () => {
+    const pokemonName = 'pikachu';
+    const req = {
+      params: {
+        pokemonName,
+      },
+    };
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+    const errorMessage = 'Internal Server Error';
+
+    PokemonService.fetchPokemonData.mockRejectedValueOnce(new Error(errorMessage));
+
+    await fetchPokemon(req, res);
+
+    expect(PokemonService.fetchPokemonData).toHaveBeenCalledWith(pokemonName);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
   });
 });
