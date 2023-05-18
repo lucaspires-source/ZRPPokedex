@@ -1,15 +1,11 @@
-// Import the necessary dependencies and the fetchPokemon function
+
 const axios = require('axios');
 const fetchPokemon = require('./pokemonController');
 
-// Mock the axios library to simulate API responses
 jest.mock('axios');
 
-// Define a test suite
 describe('fetchPokemon', () => {
-  // Define a test case for a successful request
   it('should fetch and format Pokemon data', async () => {
-    // Mock the API response
     const pokemonData = {
       data: {
         id: 258,
@@ -27,17 +23,16 @@ describe('fetchPokemon', () => {
     };
     axios.get.mockResolvedValueOnce(pokemonData);
 
-    // Define the mock request and response objects
     const req = { params: { pokemonName: 'mudkip' } };
     const res = {
       send: jest.fn(),
       json: jest.fn()
     };
 
-    // Call the fetchPokemon function
+ 
     await fetchPokemon(req, res);
 
-    // Check the expectations
+
     expect(axios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/mudkip');
     expect(res.json).toHaveBeenCalledWith({
       abilities: [ 
@@ -52,9 +47,9 @@ describe('fetchPokemon', () => {
     expect(res.send).not.toHaveBeenCalled();
   });
 
-  // Define a test case for an error response
+
   it('should handle API errors', async () => {
-    // Mock the error response
+
     const errorMessage = 'Pokemon not found';
     const errorResponse = {
       response: {
@@ -63,17 +58,15 @@ describe('fetchPokemon', () => {
     };
     axios.get.mockRejectedValueOnce(errorResponse);
 
-    // Define the mock request and response objects
     const req = { params: { pokemonName: 'charizard' } };
     const res = {
       send: jest.fn(),
       json: jest.fn()
     };
 
-    // Call the fetchPokemon function
+
     await fetchPokemon(req, res);
 
-    // Check the expectations
     expect(axios.get).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon/charizard');
     expect(res.send).toHaveBeenCalledWith(errorMessage);
     expect(res.json).not.toHaveBeenCalled();
