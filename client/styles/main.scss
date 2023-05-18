@@ -1,28 +1,28 @@
-$f-light: 300;
-$f-regular: 400;
-$f-semi-bold: 600;
-$f-bold: 700;
-$f-extra-bold: 800;
+// Variables
+$font-light: 300;
+$font-regular: 400;
+$font-semi-bold: 600;
+$font-bold: 700;
+$font-extra-bold: 800;
 
-// colours
-$dark: #001529;
-$light: #eddddd;
-$primary: #f65555;
-$secondary: #F78D8D;
+$color-dark: #001529;
+$color-light: #eddddd;
+$color-primary: #f65555;
+$color-secondary: #f78d8d;
 
-
-// global
+// Global Styles
 body {
   font-family: "Nunito", sans-serif;
-  color: $dark;
+  color: $color-dark;
   margin: 0;
-  background-color: $light;
+  background-color: $color-light;
 }
 
 * {
   box-sizing: border-box;
 }
 
+// Components
 .container {
   max-width: 500px;
   margin: 0 auto;
@@ -30,6 +30,7 @@ body {
   width: 100%;
 }
 
+// Common Heading Styles
 h1,
 h2,
 h3,
@@ -41,32 +42,34 @@ h6 {
 
 .page-wrapper {
   margin: 3.2rem 0;
-.back-button {
-  border: #F78D8D 2px solid;
-  margin: 0.4rem 0;
-  width: 100%;
-  max-width: 25rem;
-  padding: 0.3rem;
-  border-radius: 0.6rem;
-  transition: 0.5s;
-  &:hover {
-    opacity: 0.7;
-    scale: 1.1;
+
+  .back-button {
+    border: 2px solid $color-secondary;
+    margin: 0.4rem 0;
+    width: 100%;
+    max-width: 25rem;
+    padding: 0.3rem;
+    border-radius: 0.6rem;
+    transition: 0.5s;
+
+    &:hover {
+      opacity: 0.7;
+      transform: scale(1.1);
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $color-primary;
+      font-weight: $font-semi-bold;
+      transition: all 0.3s ease;
+    }
   }
-
-  .back-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: $primary;
-    font-weight: $f-semi-bold;
-    transition: all 0.3s ease;
-
-
-}
-  }
 }
 
+
+// Homepage Styles
 .home {
   width: 100vw;
   min-height: 100vh;
@@ -75,16 +78,18 @@ h6 {
   justify-content: center;
 }
 
+// Search Bar Styles
 .search {
   display: flex;
   position: relative;
+
   input {
     width: 100%;
     padding: 1rem;
     border-radius: 0.7rem;
-    border: 2px solid $primary;
+    border: 2px solid $color-primary;
     font-size: 1.25rem;
-    color: $dark;
+    color: $color-dark;
     font-family: "Nunito", sans-serif;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
@@ -101,7 +106,7 @@ h6 {
     padding: 0.4rem 1rem;
     margin: 0;
     list-style: none;
-    border: 2px solid $primary;
+    border: 2px solid $color-primary;
     border-radius: 0.7rem;
     z-index: 100;
     background-color: #fff;
@@ -116,14 +121,14 @@ h6 {
       a {
         display: block;
         text-decoration: none;
-        color: $dark;
-        font-weight: $f-semi-bold;
+        color: $color-dark;
+        font-weight: $font-semi-bold;
         transition: all 0.3s ease;
         width: 100%;
         padding: 0.7rem 0;
 
         &:hover {
-          color: $primary;
+          color: $color-primary;
         }
       }
     }
@@ -136,12 +141,15 @@ h6 {
 
 .logo-container {
   margin: 1.3rem 0;
+
   img {
     width: 100%;
     height: 100%;
   }
 }
 
+
+//Pokemon Page Styles
 .pokemon-container {
   display: flex;
   flex-direction: column;
@@ -149,90 +157,100 @@ h6 {
   justify-content: center;
   width: 100vw;
   min-height: 100vh;
+
   .pokemon-card {
     max-width: 400px;
     max-height: 400px;
-    height:100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    border: $primary solid 0.4rem;
+    border: $color-primary solid 0.4rem;
     border-radius: 0.4rem;
-    background-color: $primary;
+    background-color: $color-primary;
     padding: 1rem;
     transition: 0.2s;
 
     &:hover {
       opacity: 0.7;
-      scale: 1.1;
+      transform: scale(1.1);
       margin-top: 2rem;
     }
+
     p {
-      color: $light;
+      color: $color-light;
       text-transform: capitalize;
       margin: 0.4rem;
     }
+
     .pokemon-name {
-      background-color: $secondary;
+      background-color: $color-secondary;
       padding: 0.3rem;
       border-radius: 0.2rem;
-      font-weight: $f-bold;
+      font-weight: $font-bold;
       font-size: 1.4rem;
+      
+
     }
 
     .pokemon-info {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
     }
 
     .pokemon-image {
-      background-color: $secondary;
+      background-color: $color-secondary;
       border-radius: 2rem;
       margin: 0 1rem;
+
       img {
         height: 7rem;
         width: 7rem;
       }
     }
+
     .pokemon-stats {
       display: flex;
       flex-direction: column;
-      span{
-        text-transform: uppercase ;
-        background-color:$secondary; 
+
+      span {
+        text-transform: uppercase;
+        text-align: center;
+        background-color: $color-secondary;
         border-radius: 0.4rem;
         margin: 0.2rem;
         padding: 0.3rem;
-        color: $light;
+        color: $color-light;
         font-size: 0.8rem;
       }
     }
- 
   }
 }
 
-
+//Not Found  Page Styles
 .notFound-container {
-height: 100vh;
-width: 100vw;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-  img{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  img {
     width: 200px;
     height: 200px;
   }
 }
+
+// nprogress  package styles
 #nprogress {
   pointer-events: none;
 }
 
 #nprogress .bar {
-  background: $primary;
+  background: $color-primary;
 
   position: fixed;
   z-index: 1031;
@@ -273,8 +291,8 @@ justify-content: center;
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: $primary;
-  border-left-color: $primary;
+  border-top-color: $color-primary;
+  border-left-color: $color-primary;
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
