@@ -1,25 +1,14 @@
-const axios = require('axios')
-const sortAbilitiesByAlphabeticalOrder = require('../../helpers/sortAbilitiesByAlphabeticalOrder/sortAbilitiesByAlphabeticalOrder')
-const formatNumbers = require('../../helpers/formatNumbers/formatNumbers')
+const PokemonService = require('../../services/PokemonService/PokemonService');
 
-
- const fetchPokemon = async (req, res) => {
-    const { pokemonName } = req.params
-    const pokemon = await axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
-      .catch(error => {
-        console.log(error)
-        return error
-      })
-    if (!pokemon.data) {
-      return res.send(pokemon.response.statusText)
-    }
-    let { id, abilities , types} = pokemon.data
-    const imgURL = pokemon.data.sprites.front_default
-    abilities = sortAbilitiesByAlphabeticalOrder(abilities)
-    const number = formatNumbers(id)
-    console.log(`get at /api/pokemons/${pokemonName}`)
-    return res.json({ abilities, imgURL, pokemonName, types, number})
+const fetchPokemon = async (req, res) => {
+  try {
+    const { pokemonName } = req.params;
+    const pokemonData = await PokemonService.fetchPokemonData(pokemonName);
+    return res.json(pokemonData);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
+};
 
-module.exports = fetchPokemon
+module.exports = fetchPokemon;
