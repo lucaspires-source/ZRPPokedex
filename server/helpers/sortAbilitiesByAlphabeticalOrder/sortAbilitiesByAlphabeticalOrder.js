@@ -1,6 +1,8 @@
 const sortAbilitiesByAlphabeticalOrder = function (pokemonAbilities) {
-      const sorted = pokemonAbilities.sort((abilityA, abilityB) => {return abilityA.ability.name > abilityB.ability.name ? 1 : -1})
-      return sorted
+  const sorted = [...pokemonAbilities].sort((abilityA, abilityB) =>
+    abilityA.ability.name.toLowerCase() > abilityB.ability.name.toLowerCase() ? 1 : -1
+  )
+  return sorted
     }
 
 

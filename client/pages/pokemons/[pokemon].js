@@ -31,13 +31,6 @@ export async function getServerSideProps(context) {
   } catch (error) {
     console.log(error);
   }
-
-  return {
-    redirect: {
-      destination: `/pokemons/${pokemonName}`,
-      statusCode: 307,
-    },
-  };
 }
 
 export default function Pokemom({

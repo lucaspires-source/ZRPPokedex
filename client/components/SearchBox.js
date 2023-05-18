@@ -6,7 +6,6 @@ export default function SearchBox() {
   const [results, setResults] = React.useState([]);
   const [allPokemonNames, setAllPokemonNames] = React.useState([]);
 
-  console.log(allPokemonNames);
   React.useEffect(() => {
     fetchPokemons()
     const clearQuery = () => {
@@ -38,27 +37,22 @@ export default function SearchBox() {
   const onChange = (e) => {
     const { value } = e.target;
     setQuery(value);
-
-    const matchingPokemons = [];
+  
     if (value.length > 3) {
-      for (const pokemonName of allPokemonNames) {
-        if (matchingPokemons.length >= 5) {
-          break;
-        }
-        const match = pokemonName
-          .toLowerCase()
-          .startsWith(value.toLowerCase());
-        if (match) {
-          const pokemonData = {
-            name:pokemonName,
-            slug: `/${pokemonName}`,
-          };
-          matchingPokemons.push(pokemonData);
-        }
-      }
+      const lowercasedValue = value.toLowerCase();
+      const matchingPokemons = allPokemonNames.filter((pokemonName) =>
+        pokemonName.toLowerCase().startsWith(lowercasedValue)
+      ).slice(0, 5);
+  
+      setResults(
+        matchingPokemons.map((pokemonName) => ({
+          name: pokemonName,
+          slug: `/${pokemonName}`,
+        }))
+      );
+    } else {
+      setResults([]);
     }
-
-    return setResults(matchingPokemons);
   };
 
   return (
